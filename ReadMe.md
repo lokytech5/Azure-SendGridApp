@@ -1,7 +1,7 @@
 # Event Registration Confirmation Email Function
 ![Starting the app](public/images/Screenshot2.png)
 ![Endpoint via postman](public/images/Screenshot1.png)
-![Receiving the email](public/images/Screenshot2.png)
+![Receiving the email](public/images/Screenshot3.png)
 
 This Azure Function App is designed to automatically send confirmation emails to users when they register for an event. It utilizes the SendGrid Email API to manage and send emails. The application is triggered by HTTP requests, allowing for easy integration with web.
 
@@ -22,7 +22,7 @@ This Azure Function App is designed to automatically send confirmation emails to
 
 To trigger the function and send an email:
 
-1. **Make an HTTP POST request** to your function's URL which is ``` ``` with the registration details in the body.
+1. **Make an HTTP POST request** to your function's URL which is `http://localhost:7071/api/UserRegistrationFunction` with the registration details in the body.
 2. The function validates the registration details, sends a confirmation email to the user, and returns a confirmation message.
 
 Example request body:
