@@ -1,4 +1,4 @@
-// Sample data structure for testing purposes.
+// Sample data structure for testing
 // In production, remove the following mock data and ensure all data comes from the request body (req.body).
 require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
