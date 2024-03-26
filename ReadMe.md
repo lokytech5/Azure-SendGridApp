@@ -2,6 +2,7 @@
 ![Starting the app](public/images/Screenshot2.png)
 ![Endpoint via postman](public/images/Screenshot1.png)
 ![Receiving the email](public/images/Screenshot3.png)
+![Storing Event-Registration in Azure Table Storage](public/images/Screenshot4.png)
 
 This Azure Function App is designed to automatically send confirmation emails to users when they register for an event. It utilizes the SendGrid Email API to manage and send emails. The application is triggered by HTTP requests, allowing for easy integration with web.
 

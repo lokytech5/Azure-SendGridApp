@@ -2,7 +2,32 @@
 // In production, remove the following mock data and ensure all data comes from the request body (req.body).
 require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
+const {TableClient, AzureNamedKeyCredential} = require('@azure/data-tables');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+//Configuring Table Client
+const tableName = "EventRegistration";
+const account = process.env.AZURE_STORAGE_ACCOUNT;
+const accountKey = process.env.AZURE_STORAGE_ACCOUNT_KEY;
+const credential = new AzureNamedKeyCredential(account, accountKey);
+const tableClient = new TableClient(`https://${account}.table.core.windows.net`, tableName, credential)
+
+
+//Inserting Registration Details
+async function insertRegistrationDetails(details) {
+    const entity = {
+        partitionKey: "Registration",
+        rowKey: `${details.email}`,
+        name: details.name,
+        email: details.email,
+        organization:details.organization,
+        position: details.position,
+        session: JSON.stringify(details.session)
+    };
+
+    await tableClient.createEntity(entity);
+    console.log(`Registration details for ${details.email} inserted into Table Storage`);
+}
 
 const conferenceSchedule = [
     { id: 1, title: "Emerging Technologies in AI", timeSlot: "9:00 AM - 10:30 AM" },
@@ -54,8 +79,12 @@ module.exports = async function (context, req) {
         return;
     }
 
+    // Validate registration details then insert them
+    await insertRegistrationDetails(registrationDetails);
+
     //Send registration confirmation email
     await sendRegistrationEmail(registrationDetails);
+
 
     // Prepare a confirmation message to send back to the user
     const confirmationMessage = `Hello ${registrationDetails.name}, your registration for the selected sessions has been successfully processed.`;
