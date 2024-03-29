@@ -43,7 +43,7 @@ Example request body:
 
 ## Contributing
 
-Contributions to improve the function are welcome. Please follow the standard Git workflow - fork, make your changes, and submit a pull request.
+Contributions to improve the function are welcome. Please follow the standard Git workflow - fork, make your changes, and submit a pull request
 
 ## License
 
